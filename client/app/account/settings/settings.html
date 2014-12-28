@@ -1,0 +1,80 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>GitHub Repo</h1>
+    </div>
+    <div class="col-sm-12">
+      <br />
+      <button new-repo class="btn btn-success" ng-click="showNewRepo = !showNewRepo">New repo...</button>
+      <div ng-model="newRepoMessages"></div>
+      <br />
+        <table class="repo-table table table-hover"> <!-- TODO implement datatables  <table datatable class="repo-table table table-hover"> -->
+        <thead>
+          <tr>
+            <td>repo</td>
+            <td>url</td>
+            <td>owner</td>
+            <td>permissions</td>
+            <td>created</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="newRepo" ng-show="showNewRepo">
+            <td colspan="5">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Repo name..." ng-model="newRepoName">
+                <span class="input-group-btn">
+                  <button class="btn btn-success" type="button" ng-click="createNewRepo()">Save</button>
+                </span>
+              </div><!-- /input-group -->
+            </td>
+          </tr>
+          <tr ng-repeat="repo in writableRepos" ng-style="currentRepoURI === repo.git_url ? {'font-weight': 'bold'} : {'font-weight': 'normal'}">
+            <td>{{repo.full_name}}</td>
+            <td>{{repo.git_url}}</td>
+            <td>{{repo.owner.login}}</td>
+            <td>
+              <strong>A: </strong>{{repo.permissions.admin}}
+              <strong>↑: </strong>{{repo.permissions.push}}
+              <strong>↓: </strong>{{repo.permissions.pull}}
+            <td>{{repo.created_at}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <form class="form" name="form" ng-submit="updateRepoURL(form)" novalidate>
+      </form>
+    </div>
+<!--     <div class="col-sm-12">
+      <form class="form" name="form" ng-submit="changePassword(form)" novalidate>
+
+        <div class="form-group">
+          <label>Current Password</label>
+
+          <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
+                 mongoose-error/>
+          <p class="help-block" ng-show="form.password.$error.mongoose">
+              {{ errors.other }}
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>New Password</label>
+
+          <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
+                 ng-minlength="3"
+                 required/>
+          <p class="help-block"
+             ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submitted)">
+            Password must be at least 3 characters.
+          </p>
+        </div>
+
+        <p class="help-block"> {{ message }} </p>
+
+        <button class="btn btn-lg btn-primary" type="submit">Save changes</button>
+      </form>
+    </div> -->
+  </div>
+</div>

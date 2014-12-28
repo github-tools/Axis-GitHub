@@ -1,0 +1,29 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Welcome to Axis Builder</h1>
+    <p class="lead">Create interactive charts with <strong>axisJS</strong>...</p>
+    <p>...and host them for free on <i class="fa fa-github"></i></p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Features:</h1>
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
+        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+      <p>Axis Builder |
+        <a href="https://twitter.com/aendrew">Ændrew Rininsland (@aendrew)</a>,
+        <a href="http://timesdigitaldevelopment.tumblr.com">Times Digital Development</a> |
+         <a href="https://github.com/time/axis-builder/issues?state=open">Issues</a></p>
+  </div>
+</footer>

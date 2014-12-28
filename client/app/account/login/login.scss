@@ -1,0 +1,20 @@
+// Colors
+// --------------------------------------------------
+
+$btnText:                           #fff;
+$btnTextAlt:                        #000;
+
+$btnTwitterBackground:              #2daddc;
+$btnTwitterBackgroundHighlight:     #0271bf;
+$btnGithubBackground:               #fafafa;
+$btnGithubBackgroundHighlight:      #ccc;
+
+// Social buttons
+// --------------------------------------------------
+
+.btn-twitter {
+  @include button-variant($btnText, $btnTwitterBackground, $btnTwitterBackgroundHighlight);
+}
+.btn-github {
+  @include button-variant($btnTextAlt, $btnGithubBackground, $btnGithubBackgroundHighlight);
+}
