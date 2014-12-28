@@ -2,7 +2,6 @@
 
 angular.module('axismakerApp')
   .controller('SettingsCtrl', function ($scope, User, Auth, $q, DTOptionsBuilder, DTColumnBuilder) {
-    // console.log(Auth.getToken());
     var token = Auth.getCurrentUser().githubToken;
     $scope.currentRepoURI = Auth.getCurrentUser().repoURI;
     var githubUsername = Auth.getCurrentUser().github.login
@@ -50,22 +49,29 @@ angular.module('axismakerApp')
     // });
     // console.dir($github.getUser().then(function(v){console.dir(v.repos());}));
 
-    $scope.createNewRepo = function() {
-      if (typeof $scope.newRepoName !== 'undefined') {
-        console.dir(githubUser);
-        githubUser.createRepo({"name": $scope.newRepoName}, function(err, res){
+    $scope.createNewRepo = function(repo) {
+      var newRepo = repo.length ? repo : typeof $scope.newRepoName !== 'undefined' ? $scope.newRepoName : undefined;
+      if (newRepo) {
+        githubUser.createRepo({'name': newRepo}, function(err, res){
           if (err) {
             $scope.newRepoMessages = err;
           } else {
             var repoURI = res.git_url;
-            Auth.changeRepo(repoURI)
-            .then(function(){
-              $scope.message = 'Repo successfully changed.';
-            })
-            .catch(function(){
-              $scope.errors.other = '???';
-            });
+            $scope.changeRepo(repoURI);
           }
+        });
+      }
+    }
+
+    $scope.changeRepo = function(repoURI) {
+      if (repoURI) {
+        Auth.changeRepo(repoURI)
+        .then(function(){
+          $scope.message = 'Repo successfully changed.';
+          $scope.currentRepoURI = repoURI;
+        })
+        .catch(function(){
+          $scope.errors.other = '???'; // TODO roffle.
         });
       }
     }

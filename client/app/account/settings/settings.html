@@ -4,15 +4,17 @@
   <div class="row">
     <div class="col-sm-12">
       <h1>GitHub Repo</h1>
+      <h3>Currently: <input type="text" style="width: 100%; border: 0px;" ng-model="currentRepoURI" /></h3>
     </div>
     <div class="col-sm-12">
       <br />
       <button new-repo class="btn btn-success" ng-click="showNewRepo = !showNewRepo">New repo...</button>
-      <div ng-model="newRepoMessages"></div>
+      <div>{{newRepoMessages}}</div>
       <br />
         <table class="repo-table table table-hover"> <!-- TODO implement datatables  <table datatable class="repo-table table table-hover"> -->
         <thead>
           <tr>
+            <td></td>
             <td>repo</td>
             <td>url</td>
             <td>owner</td>
@@ -22,7 +24,7 @@
         </thead>
         <tbody>
           <tr class="newRepo" ng-show="showNewRepo">
-            <td colspan="5">
+            <td colspan="6">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Repo name..." ng-model="newRepoName">
                 <span class="input-group-btn">
@@ -32,6 +34,7 @@
             </td>
           </tr>
           <tr ng-repeat="repo in writableRepos" ng-style="currentRepoURI === repo.git_url ? {'font-weight': 'bold'} : {'font-weight': 'normal'}">
+            <td><button class="btn btn-success btn-xs" ng-click="changeRepo(repo.git_url)">Use</button></td>
             <td>{{repo.full_name}}</td>
             <td>{{repo.git_url}}</td>
             <td>{{repo.owner.login}}</td>
@@ -43,8 +46,6 @@
           </tr>
         </tbody>
       </table>
-      <form class="form" name="form" ng-submit="updateRepoURL(form)" novalidate>
-      </form>
     </div>
 <!--     <div class="col-sm-12">
       <form class="form" name="form" ng-submit="changePassword(form)" novalidate>
