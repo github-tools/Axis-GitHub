@@ -4,15 +4,18 @@ angular.module('axismakerApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth, $window) {
     $scope.menu = [{
       'title': 'About',
-      'link': '/'
+      'link': '/',
+      'icon': 'fa-info-circle'
     },
     {
       'title': 'New',
-      'link': '/new'
+      'link': '/new',
+      'icon': 'fa-file-image-o'
     },
     {
       'title': 'Edit',
-      'link': '/edit'
+      'link': '/edit',
+      'icon': 'fa-folder-open-o'
     }];
 
     $scope.isCollapsed = true;

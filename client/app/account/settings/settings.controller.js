@@ -4,7 +4,7 @@ angular.module('axismakerApp')
   .controller('SettingsCtrl', function ($scope, User, Auth, $q, DTOptionsBuilder, DTColumnBuilder) {
     var token = Auth.getCurrentUser().githubToken;
     $scope.currentRepoURI = Auth.getCurrentUser().repoURI;
-    var githubUsername = Auth.getCurrentUser().github.login
+    var githubUsername = Auth.getCurrentUser().github.login;
     var github = new Github({token: token, auth: 'oauth'});
     var githubUser = github.getUser();
     githubUser.repos(function(err, repoList){
@@ -61,7 +61,7 @@ angular.module('axismakerApp')
           }
         });
       }
-    }
+    };
 
     $scope.changeRepo = function(repoURI) {
       if (repoURI) {
@@ -74,21 +74,5 @@ angular.module('axismakerApp')
           $scope.errors.other = '???'; // TODO roffle.
         });
       }
-    }
-
-    $scope.changePassword = function(form) {
-      $scope.submitted = true;
-      if(form.$valid) {
-        Auth.changePassword( $scope.user.oldPassword, $scope.user.newPassword )
-        .then( function() {
-          $scope.message = 'Password successfully changed.';
-        })
-        .catch( function() {
-          form.password.$setValidity('mongoose', false);
-          $scope.errors.other = 'Incorrect password';
-          $scope.message = '';
-        });
-      }
-		};
-
+    };
   });

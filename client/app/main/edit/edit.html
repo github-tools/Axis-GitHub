@@ -1,0 +1,30 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Edit <i class="fa fa-folder-open-o"></i></h1>
+
+      <!-- Display item list if no URL argument -->
+      <div class="col-sm-12" ng-show="!itemName">
+        <table ng-cloak class="item-table table table-hover">
+          <thead>
+            <tr>
+              <th></th>
+              <th>name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="directory in directories">
+              <td><button class="btn btn-success btn-xs" ng-click="editChart(directory.path)">Edit</button></td>
+              <td>{{directory.path}}</td>
+            </tr>
+            </tbody>
+        </table>
+      </div>
+
+    <!-- Display axisJS if argument given -->
+    <iframe id="axisJS" ng-show="!!itemName" src="bower_components/axisjs/dist/index.html" border="0" width="100%" height="auto"></iframe>
+    </div>
+  </div>
+</div>

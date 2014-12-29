@@ -1,4 +1,5 @@
 exports.setup = function (User, config) {
+  console.dir(config.github);
   var passport = require('passport');
   var GitHubStrategy = require('passport-github').Strategy;
   passport.use(new GitHubStrategy({

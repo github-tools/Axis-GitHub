@@ -14,12 +14,12 @@
         <table class="repo-table table table-hover"> <!-- TODO implement datatables  <table datatable class="repo-table table table-hover"> -->
         <thead>
           <tr>
-            <td></td>
-            <td>repo</td>
-            <td>url</td>
-            <td>owner</td>
-            <td>permissions</td>
-            <td>created</td>
+            <th></th>
+            <th>repo</th>
+            <th>url</th>
+            <th>owner</th>
+            <th>permissions</th>
+            <th>created</th>
           </tr>
         </thead>
         <tbody>
@@ -42,6 +42,7 @@
               <strong>A: </strong>{{repo.permissions.admin}}
               <strong>↑: </strong>{{repo.permissions.push}}
               <strong>↓: </strong>{{repo.permissions.pull}}
+            </td>
             <td>{{repo.created_at}}</td>
           </tr>
         </tbody>
