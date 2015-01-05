@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('axismakerApp')
-  .controller('SettingsCtrl', function ($scope, User, Auth, $q, DTOptionsBuilder, DTColumnBuilder) {
+  .controller('SettingsCtrl', function ($scope, User, Auth, $q) {
     var token = Auth.getCurrentUser().githubToken;
     $scope.currentRepoURI = Auth.getCurrentUser().repoURI;
     var githubUsername = Auth.getCurrentUser().github.login;

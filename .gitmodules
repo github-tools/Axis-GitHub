@@ -1,0 +1,3 @@
+[submodule "client/axisJS"]
+	path = client/axisJS
+	url = git@github.com:times/axisJS.git

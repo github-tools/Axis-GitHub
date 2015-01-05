@@ -6,7 +6,7 @@ angular.module('axismakerApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
-  'datatables'
+  'ngPostMessage'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

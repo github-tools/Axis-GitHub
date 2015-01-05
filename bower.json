@@ -15,9 +15,9 @@
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
     "angular-ui-router": "~0.2.10",
-    "angular-datatables": "~0.3.0",
-    "github": "~0.10.3",
-    "axisjs": "~0.2.3"
+    "github": "71a3cb707cb8aaa6e8d6a8b2604a9c5c6762ba83",
+    "angular-post-message": "~1.1.1",
+    "jsonfn": "vkiryukhin/jsonfn"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
