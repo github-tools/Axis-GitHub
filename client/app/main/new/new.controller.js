@@ -15,14 +15,13 @@ angular.module('axismakerApp')
     var createNew = function(config) {
       if ($scope.filename !== '') {
         $http.get('/app/preview/preview.html').success(function(template){
-          repo.write($scope.branch, './' + $scope.filename + '/index.html', template, 'initial', function(err, res, xmlhttprequest){
-            console.dir([err, res, xmlhttprequest]);
-            var url = 'https://' + $scope.repoName[1] + '.github.io/' + $scope.repoName[2] + '/' + res.content.path;
-          });
-          repo.write($scope.branch, './' + $scope.filename + '/axis.json', config.config, 'initial', function(err, res, xmlhttprequest){
-            // url = 'https://' + repoName[1] + '.github.io/' + repoName[2] + '/' + res.content.path;
-            console.dir([err, res, xmlhttprequest]);
-            console.log('finished');
+          repo.write($scope.branch, $scope.filename + '/index.html', template, 'initial -- ' + $scope.filename, function(err, res, xmlhttprequest){
+            repo.write($scope.branch, $scope.filename + '/axis.json', config.config, 'initial' + $scope.filename, function(err, res, xmlhttprequest){
+              // url = 'https://' + repoName[1] + '.github.io/' + repoName[2] + '/' + res.content.path;
+              console.dir([err, res, xmlhttprequest]);
+              console.log('finished');
+            });
+            //var url = 'https://' + $scope.repoName[1] + '.github.io/' + $scope.repoName[2] + '/' + res.content.path;
           });
         });
       }

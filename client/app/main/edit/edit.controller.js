@@ -53,8 +53,9 @@ angular.module('axismakerApp')
     var createNew = function(config) {
       if ($scope.filename !== '') {
         $http.get('/app/preview/preview.html').success(function(template){
-          repo.write($scope.branch, $scope.filename + '/index.html', template, 'initial', function(err, res, xmlhttprequest){
-            repo.write($scope.branch, $scope.filename + '/axis.json', config.config, 'initial', function(err, res, xmlhttprequest){
+          var timestamp = new Date();
+          repo.write($scope.branch, $scope.filename + '/index.html', template, 'Updated ' + timestamp.toISOString() , function(err, res, xmlhttprequest){
+            repo.write($scope.branch, $scope.filename + '/axis.json', config.config, 'Updated ' + timestamp.toISOString(), function(err, res, xmlhttprequest){
               // url = 'https://' + repoName[1] + '.github.io/' + repoName[2] + '/' + res.content.path;
               console.dir([err, res, xmlhttprequest]);
               console.log('finished');
