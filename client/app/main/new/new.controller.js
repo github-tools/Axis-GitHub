@@ -2,7 +2,7 @@
 
 angular.module('axismakerApp')
   .controller('NewCtrl', function ($scope, Auth, $compile, $http, $window, $modal) {
-    $window.axisConfig = undefined; // clear window from previous edits
+    $window.axisConfig = undefined; // clear global config from previous edits
     $scope.branch = 'gh-pages'; // change to gh-pages in prod
     $scope.token = Auth.getCurrentUser().githubToken;
     $scope.github = new Github({token: $scope.token, auth: 'oauth'});
