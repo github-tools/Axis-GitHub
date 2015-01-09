@@ -1,0 +1,9 @@
+# axisJS config
+---
+framework: 'c3'
+
+input:
+  - 'csv'
+
+export:
+  - 'axismaker'
