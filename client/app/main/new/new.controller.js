@@ -19,7 +19,7 @@ angular.module('axismakerApp')
             console.dir([err, res, xmlhttprequest]);
             var url = 'https://' + $scope.repoName[1] + '.github.io/' + $scope.repoName[2] + '/' + res.content.path;
           });
-          repo.write($scope.branch, './' + $scope.filename + '/axis2.json', config.config, 'initial', function(err, res, xmlhttprequest){
+          repo.write($scope.branch, './' + $scope.filename + '/axis.json', config.config, 'initial', function(err, res, xmlhttprequest){
             // url = 'https://' + repoName[1] + '.github.io/' + repoName[2] + '/' + res.content.path;
             console.dir([err, res, xmlhttprequest]);
             console.log('finished');

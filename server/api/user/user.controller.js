@@ -88,8 +88,9 @@ exports.changeRepo = function(req, res, next) {
 
   User.findById(userId, function(err, user) {
     user.repoURI = newRepo;
-    user.save(function(err) {
+    user.save(function(err, a, b) {
       if (err) return validationError(res, err);
+      console.dir([err, a, b]);
       res.send(200);
     });
   });

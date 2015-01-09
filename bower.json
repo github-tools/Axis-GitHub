@@ -15,9 +15,9 @@
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
     "angular-ui-router": "~0.2.10",
-    "github": "71a3cb707cb8aaa6e8d6a8b2604a9c5c6762ba83",
     "angular-post-message": "~1.1.1",
-    "jsonfn": "vkiryukhin/jsonfn"
+    "jsonfn": "vkiryukhin/jsonfn",
+    "github": "aendrew/github#147_fix_getSha_write"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

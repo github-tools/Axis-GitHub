@@ -1,5 +1,4 @@
 exports.setup = function (User, config) {
-  console.dir(config.github);
   var passport = require('passport');
   var GitHubStrategy = require('passport-github').Strategy;
   passport.use(new GitHubStrategy({
@@ -10,7 +9,7 @@ exports.setup = function (User, config) {
   },
   function(token, tokenSecret, profile, done) {
     User.findOne({
-      'github.id_str': profile.id
+      'github.login': profile.username
     }, function(err, user) {
       if (err) {
         return done(err);

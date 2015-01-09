@@ -2,35 +2,37 @@
 
 angular.module('axismakerApp')
   .controller('SettingsCtrl', function ($scope, User, Auth, $q) {
-    var token = Auth.getCurrentUser().githubToken;
-    $scope.currentRepoURI = Auth.getCurrentUser().repoURI;
-    var githubUsername = Auth.getCurrentUser().github.login;
-    var github = new Github({token: token, auth: 'oauth'});
-    var githubUser = github.getUser();
-    githubUser.repos(function(err, repoList){
-      var writableRepos = [];
-      if (repoList) {
-        angular.forEach(repoList, function(repo, i){
-          if (!repo.fork && repo.permissions.push && repo.permissions.pull) {
-            writableRepos.push(repo);
-          }
-        });
-        if ($scope.currentRepoURI) {
-          var current = writableRepos.filter(function(v){
-            return v.git_url === $scope.currentRepoURI;
+    var userData = User.get().$promise.then(function(userData){
+      var token = userData.githubToken;
+      $scope.currentRepoURI = userData.repoURI;
+      var github = new Github({token: token, auth: 'oauth'});
+      var githubUser = github.getUser();
+      githubUser.repos(function(err, repoList){
+        var writableRepos = [];
+        if (repoList) {
+          angular.forEach(repoList, function(repo, i){
+            if (!repo.fork && repo.permissions.push && repo.permissions.pull) {
+              writableRepos.push(repo);
+            }
           });
-          var remainder = writableRepos.filter(function(v){
-            return v.git_url !== $scope.currentRepoURI;
-          });
-          if (current.length) {
-            remainder.unshift(current[0]);
+          if ($scope.currentRepoURI) {
+            var current = writableRepos.filter(function(v){
+              return v.git_url === $scope.currentRepoURI;
+            });
+            var remainder = writableRepos.filter(function(v){
+              return v.git_url !== $scope.currentRepoURI;
+            });
+            if (current.length) {
+              remainder.unshift(current[0]);
+            }
+            writableRepos = remainder;
           }
-          writableRepos = remainder;
+          $scope.writableRepos = writableRepos;
+          $scope.$apply();
         }
-        $scope.writableRepos = writableRepos;
-        $scope.$apply();
-      }
+      });
     });
+
     $scope.showNewRepo = false;
 
 

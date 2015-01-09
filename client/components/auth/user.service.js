@@ -9,19 +9,19 @@ angular.module('axismakerApp')
       changePassword: {
         method: 'PUT',
         params: {
-          controller:'password'
+          controller: 'password'
         }
       },
       changeRepo: {
         method: 'PUT',
         params: {
-          controller:'repo'
+          controller: 'repo'
         }
       },
       get: {
         method: 'GET',
         params: {
-          id:'me'
+          id: 'me'
         }
       }
 	  });
