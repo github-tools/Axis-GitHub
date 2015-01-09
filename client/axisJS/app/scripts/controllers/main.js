@@ -120,7 +120,6 @@ angular.module('axisJSApp')
 
     // TODO abstract into an input service or something.
     // Repopulate if data is being sent in from WordPress.
-    console.dir(parent);
     if (typeof parent.axisConfig !== 'undefined' ) {
       $scope.config = angular.fromJson(parent.axisConfig);
   		$scope.config.axis.x.tick.format = function (b){return'series'===$scope.config.chartGlobalType&&'category'!==$scope.config.axis.x.type?$scope.config.axis.x.prefix+b.toFixed($scope.config.axis.x.accuracy).toString()+$scope.config.axis.x.suffix:b;};

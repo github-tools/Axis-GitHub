@@ -9,7 +9,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/c3/0.4.8/c3.min.js"></script>
     <script type="text/javascript">
       (function(){
-        d3.xhr('./axis2.json', 'text/plain', function(err, res){
+        d3.xhr('./axis.json', 'text/plain', function(err, res){
           var config = JSON.parse(res.responseText);
           // If you can figure out how to do this better, please talk to @aendrew.
           config.axis.x.tick.format = function (b){return'series'===config.chartGlobalType&&'category'!==config.axis.x.type?config.axis.x.prefix+b.toFixed(config.axis.x.accuracy).toString()+config.axis.x.suffix:b;};

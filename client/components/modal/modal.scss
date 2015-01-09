@@ -23,3 +23,11 @@
 .modal-danger .modal-header {
   background: $brand-danger;
 }
+
+.modal-body {
+  min-height: 500px;
+  iframe {
+    min-height: 500px;
+    border: none;
+  }
+}

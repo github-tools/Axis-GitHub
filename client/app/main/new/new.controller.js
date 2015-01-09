@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('axismakerApp')
-  .controller('NewCtrl', function ($scope, Auth, $compile, $http, $window) {
+  .controller('NewCtrl', function ($scope, Auth, $compile, $http, $window, $modal) {
+    $window.axisConfig = undefined; // clear window from previous edits
     $scope.branch = 'gh-pages'; // change to gh-pages in prod
     $scope.token = Auth.getCurrentUser().githubToken;
     $scope.github = new Github({token: $scope.token, auth: 'oauth'});
@@ -16,12 +17,17 @@ angular.module('axismakerApp')
       if ($scope.filename !== '') {
         $http.get('/app/preview/preview.html').success(function(template){
           repo.write($scope.branch, $scope.filename + '/index.html', template, 'initial -- ' + $scope.filename, function(err, res, xmlhttprequest){
+            var url = 'https://' + $scope.repoName[1] + '.github.io/' + $scope.repoName[2] + '/' + res.content.path;
             repo.write($scope.branch, $scope.filename + '/axis.json', config.config, 'initial' + $scope.filename, function(err, res, xmlhttprequest){
-              // url = 'https://' + repoName[1] + '.github.io/' + repoName[2] + '/' + res.content.path;
-              console.dir([err, res, xmlhttprequest]);
-              console.log('finished');
+              $modal.open({
+                templateUrl: 'components/modal/modal.html',
+                controller: function($scope, $sce){
+                  $scope.modal = {};
+                  $scope.modal.title = url;
+                  $scope.modal.html = $sce.trustAsHtml('<iframe src="' + url + '?' + Date.now() + '" width="100%" height="100%"></iframe><br><a href="' + url + '" target="_blank">Open in new window <i class="fa fa-search-plus"></i></a>');
+                }
+              });
             });
-            //var url = 'https://' + $scope.repoName[1] + '.github.io/' + $scope.repoName[2] + '/' + res.content.path;
           });
         });
       }

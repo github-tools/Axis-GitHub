@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('axismakerApp')
-  .controller('EditCtrl', function ($scope, $window, $location, Auth, $stateParams) {
+  .controller('EditCtrl', function ($scope, $window, $location, Auth, $stateParams, $modal, $http) {
     var branch = 'gh-pages'; // change to gh-pages in prod
     $scope.itemName = typeof $stateParams.item !== 'undefined' ? $stateParams.item : undefined;
+    $scope.filename = $scope.itemName;
     var token = Auth.getCurrentUser().githubToken;
     var github = new Github({token: token, auth: 'oauth'});
     var currentRepoURI = Auth.getCurrentUser().repoURI;
@@ -36,7 +37,7 @@ angular.module('axismakerApp')
     } else {
       repo.read(branch, $scope.itemName + '/axis.json', function(err, config){
         if (err) {
-          alert('This isn\'t an Axis chart!');
+          $window.alert('This isn\'t an Axis chart!');
           $location.path = '/edit';
         } else { // Load config object into Axis
           $scope.axisConfig = config;
@@ -54,11 +55,17 @@ angular.module('axismakerApp')
       if ($scope.filename !== '') {
         $http.get('/app/preview/preview.html').success(function(template){
           var timestamp = new Date();
+          var url = 'https://' + repoName[1] + '.github.io/' + repoName[2] + '/' + $scope.filename;
           repo.write($scope.branch, $scope.filename + '/index.html', template, 'Updated ' + timestamp.toISOString() , function(err, res, xmlhttprequest){
             repo.write($scope.branch, $scope.filename + '/axis.json', config.config, 'Updated ' + timestamp.toISOString(), function(err, res, xmlhttprequest){
-              // url = 'https://' + repoName[1] + '.github.io/' + repoName[2] + '/' + res.content.path;
-              console.dir([err, res, xmlhttprequest]);
-              console.log('finished');
+              $modal.open({
+                templateUrl: 'components/modal/modal.html',
+                controller: function($scope, $sce){
+                  $scope.modal = {};
+                  $scope.modal.title = url;
+                  $scope.modal.html = $sce.trustAsHtml('<iframe src="' + url + '?' + Date.now() + '" width="100%" height="100%"></iframe><br><a href="' + url + '" target="_blank">Open in new window <i class="fa fa-search-plus"></i></a>');
+                }
+              });
             });
           });
         });
