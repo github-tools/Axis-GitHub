@@ -355,6 +355,7 @@ module.exports = function (grunt) {
             'bower_components/**/*',
             'assets/images/{,*/}*.{webp}',
             'assets/fonts/**/*',
+            'axisJS/*',
             'index.html'
           ]
         }, {
@@ -396,6 +397,12 @@ module.exports = function (grunt) {
       openshift: {
         options: {
           remote: 'openshift',
+          branch: 'master'
+        }
+      },
+      deis: {
+        options: {
+          remote: 'ssh://git@deis.apps.timesdev.tools:2222/axismaker.git',
           branch: 'master'
         }
       }
