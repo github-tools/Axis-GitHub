@@ -55,7 +55,10 @@ angular.module('axismakerApp')
       if ($scope.filename !== '') {
         $http.get('/app/preview/preview.html').success(function(template){
           var timestamp = new Date();
-          var url = 'https://' + repoName[1] + '.github.io/' + repoName[2] + '/' + $scope.filename;
+          //var url = 'https://' + repoName[1] + '.github.io/' + repoName[2] + '/' + $scope.filename; // Takes too long to push to GH-pages for preview. Use RawGit instead.
+          var url = 'https://rawgit.com/' + $scope.repoName[1] + '/' + $scope.repoName[2] + '/index.html';
+          var cdnUrl = 'https://cdn.rawgit.com/' + $scope.repoName[1] + '/' + $scope.repoName[2] + '/index.html';
+
           repo.write($scope.branch, $scope.filename + '/index.html', template, 'Updated ' + timestamp.toISOString() , function(err, res, xmlhttprequest){
             repo.write($scope.branch, $scope.filename + '/axis.json', config.config, 'Updated ' + timestamp.toISOString(), function(err, res, xmlhttprequest){
               $modal.open({
@@ -63,7 +66,7 @@ angular.module('axismakerApp')
                 controller: function($scope, $sce){
                   $scope.modal = {};
                   $scope.modal.title = url;
-                  $scope.modal.html = $sce.trustAsHtml('<iframe src="' + url + '?' + Date.now() + '" width="100%" height="100%"></iframe><br><a href="' + url + '" target="_blank">Open in new window <i class="fa fa-search-plus"></i></a>');
+                  $scope.modal.html = $sce.trustAsHtml('<iframe src="' + url + '" width="100%" height="100%"></iframe><br><a href="' + cdnUrl + '?' + Date.now() + '" target="_blank">Open in new window <i class="fa fa-search-plus"></i></a>');
                 }
               });
             });
