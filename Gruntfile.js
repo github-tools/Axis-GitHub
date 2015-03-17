@@ -355,7 +355,7 @@ module.exports = function (grunt) {
             'bower_components/**/*',
             'assets/images/{,*/}*.{webp}',
             'assets/fonts/**/*',
-            'axisJS/*',
+            'axisJS/dist/**/*',
             'index.html'
           ]
         }, {
@@ -410,6 +410,9 @@ module.exports = function (grunt) {
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
+      options: {
+
+      },
       server: [
         'sass',
       ],
@@ -427,7 +430,7 @@ module.exports = function (grunt) {
       },
       dist: [
         'sass',
-        'imagemin',
+        // 'imagemin',
         'svgmin'
       ]
     },
