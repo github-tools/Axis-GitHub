@@ -1,6 +1,6 @@
 {
   "name": "axismaker",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "angular": ">=1.2.*",
     "json3": "~3.3.1",
@@ -17,7 +17,7 @@
     "angular-ui-router": "~0.2.10",
     "angular-post-message": "~1.1.1",
     "jsonfn": "vkiryukhin/jsonfn",
-    "github": "aendrew/github#147_fix_getSha_write"
+    "github": "aendrew/github"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

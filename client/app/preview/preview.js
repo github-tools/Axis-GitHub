@@ -5,7 +5,7 @@ angular.module('axismakerApp')
     $stateProvider
       .state('preview', {
         url: '/preview',
-        templateUrl: 'app/preview/preview/preview.html',
+        templateUrl: 'app/preview/preview.html',
         controller: 'PreviewCtrl'
       });
   });
