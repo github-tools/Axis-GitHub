@@ -1,5 +1,4 @@
 node_modules
-!client/node_modules
 public
 .tmp
 .sass-cache

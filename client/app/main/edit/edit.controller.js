@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('axismakerApp')
-  .controller('EditCtrl', function ($scope, $window, $location, Auth, $stateParams, $modal, $http) {
+  .controller('EditCtrl', function ($scope, $window, $location, Auth, $stateParams, $modal, $http, $compile) {
     var branch = 'gh-pages'; // change to gh-pages in prod
     $scope.itemName = typeof $stateParams.item !== 'undefined' ? $stateParams.item : undefined;
     $scope.filename = $scope.itemName;
@@ -54,18 +54,16 @@ angular.module('axismakerApp')
     var createNew = function(config) {
       if ($scope.filename !== '') {
         $http.get('/app/preview/preview.html').success(function(template){
-          var timestamp = new Date();
-          //var url = 'https://' + repoName[1] + '.github.io/' + repoName[2] + '/' + $scope.filename; // Takes too long to push to GH-pages for preview. Use RawGit instead.
-          var url = 'https://rawgit.com/' + $scope.repoName[1] + '/' + $scope.repoName[2] + '/index.html';
-          var cdnUrl = 'https://cdn.rawgit.com/' + $scope.repoName[1] + '/' + $scope.repoName[2] + '/index.html';
-
-          repo.write($scope.branch, $scope.filename + '/index.html', template, 'Updated ' + timestamp.toISOString() , function(err, res, xmlhttprequest){
-            repo.write($scope.branch, $scope.filename + '/axis.json', config.config, 'Updated ' + timestamp.toISOString(), function(err, res, xmlhttprequest){
+          repo.write($scope.branch, $scope.filename + '/axis.json', config.config, 'Updated ' + timestamp.toISOString() , function(err, res, xmlhttprequest){
+            var urlJSON = 'https://cdn.rawgit.com/' + $scope.repoName[1] + '/' + $scope.repoName[2] + '/' + res.commit.sha + '/' + $scope.filename + '/axis.json';
+            var compiled = template.replace(/\{\{axisJSON\}\}/, urlJSON); // messy, should be doable in Angular.
+            repo.write($scope.branch, $scope.filename + '/index.html', compiled, 'Updated ' + timestamp.toISOString(), function(err, res, xmlhttprequest){
+              var url = 'https://cdn.rawgit.com/' + $scope.repoName[1] + '/' + $scope.repoName[2] + '/' + res.commit.sha + '/' + $scope.filename + '/index.html';
               $modal.open({
                 templateUrl: 'components/modal/modal.html',
                 controller: function($scope, $sce){
                   $scope.modal = {};
-                  $scope.modal.title = url;
+                  $scope.modal.title = 'Updated chart!';
                   $scope.modal.html = $sce.trustAsHtml('<iframe src="' + url + '" width="100%" height="100%"></iframe><br><a href="' + cdnUrl + '?' + Date.now() + '" target="_blank">Open in new window <i class="fa fa-search-plus"></i></a>');
                 }
               });

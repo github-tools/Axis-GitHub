@@ -18,7 +18,8 @@
     "angular-post-message": "~1.1.1",
     "jsonfn": "vkiryukhin/jsonfn",
     "github": "michael/github",
-    "github-api": "michael/github#master"
+    "github-api": "michael/github#master",
+    "axisjs": "axismaker"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
