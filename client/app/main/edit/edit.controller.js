@@ -54,17 +54,18 @@ angular.module('axismakerApp')
     var createNew = function(config) {
       if ($scope.filename !== '') {
         $http.get('/app/preview/preview.html').success(function(template){
+          var timestamp = new Date();
           repo.write($scope.branch, $scope.filename + '/axis.json', config.config, 'Updated ' + timestamp.toISOString() , function(err, res, xmlhttprequest){
-            var urlJSON = 'https://cdn.rawgit.com/' + $scope.repoName[1] + '/' + $scope.repoName[2] + '/' + res.commit.sha + '/' + $scope.filename + '/axis.json';
+            var urlJSON = 'https://cdn.rawgit.com/' + repoName[1] + '/' + repoName[2] + '/' + res.commit.sha + '/' + $scope.filename + '/axis.json';
             var compiled = template.replace(/\{\{axisJSON\}\}/, urlJSON); // messy, should be doable in Angular.
             repo.write($scope.branch, $scope.filename + '/index.html', compiled, 'Updated ' + timestamp.toISOString(), function(err, res, xmlhttprequest){
-              var url = 'https://cdn.rawgit.com/' + $scope.repoName[1] + '/' + $scope.repoName[2] + '/' + res.commit.sha + '/' + $scope.filename + '/index.html';
+              var url = 'https://cdn.rawgit.com/' + repoName[1] + '/' + repoName[2] + '/' + res.commit.sha + '/' + $scope.filename + '/index.html';
               $modal.open({
                 templateUrl: 'components/modal/modal.html',
                 controller: function($scope, $sce){
                   $scope.modal = {};
                   $scope.modal.title = 'Updated chart!';
-                  $scope.modal.html = $sce.trustAsHtml('<iframe src="' + url + '" width="100%" height="100%"></iframe><br><a href="' + cdnUrl + '?' + Date.now() + '" target="_blank">Open in new window <i class="fa fa-search-plus"></i></a>');
+                  $scope.modal.html = $sce.trustAsHtml('<iframe src="' + url + '" width="100%" height="100%"></iframe><br><a href="' + url + '?' + Date.now() + '" target="_blank">Open in new window <i class="fa fa-search-plus"></i></a>');
                 }
               });
             });
