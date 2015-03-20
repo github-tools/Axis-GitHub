@@ -5,11 +5,11 @@ exports.setup = function (User, config) {
     clientID: config.github.clientID,
     clientSecret: config.github.clientSecret,
     callbackURL: config.github.callbackURL,
-    scope: ['repo']
+    scope: ['repo', 'user']
   },
   function(token, tokenSecret, profile, done) {
     User.findOne({
-      'github.id_str': profile.id
+      'github.login': profile.username
     }, function(err, user) {
       if (err) {
         return done(err);

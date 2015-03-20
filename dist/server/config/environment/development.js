@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/axismaker-dev'
   },
 
-  seedDB: true
+  // seedDB: true
 };

@@ -6,15 +6,22 @@
 // You will need to set these on the server you deploy to.
 
 module.exports = {
-  DOMAIN: 'http://localhost:9000',
-  SESSION_SECRET: "axismaker-secret",
+  DOMAIN:           'http://localhost:9000',
+  SESSION_SECRET:   'axismaker-secret',
 
-  TWITTER_ID: 'app-id',
-  TWITTER_SECRET: 'secret',
-
-  GITHUB_ID: '2bc078f24aa1e32e124a',
-  GITHUB_SECRET: '40ae696ed3e8e684737c57616524725c571137f0',
+  TWITTER_ID:       'app-id',
+  TWITTER_SECRET:   'secret',
 
   // Control debug level for modules using visionmedia/debug
-  DEBUG: ''
+  DEBUG: '',
+
+  // GitHub API
+
+  // DEV creds
+  GITHUB_ID: '1938efc3b040e515d192',
+  GITHUB_SECRET: '03aba038309ed8669f3576d315aea48ed169a675'
+
+  // PROD creds
+  // GITHUB_ID: '2bc078f24aa1e32e124a',
+  // GITHUB_SECRET: '40ae696ed3e8e684737c57616524725c571137f0'
 };
