@@ -17,7 +17,8 @@
     "angular-ui-router": "~0.2.10",
     "angular-post-message": "~1.1.1",
     "jsonfn": "vkiryukhin/jsonfn",
-    "github": "aendrew/github#147_fix_getSha_write"
+    "github": "michael/github",
+    "github-api": "michael/github#master"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
