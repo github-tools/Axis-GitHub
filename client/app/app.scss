@@ -21,11 +21,6 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'admin/admin.scss';
 @import 'main/main.scss';
 @import 'preview/preview.scss';
+@import 'c3Demo/c3Demo.scss';
 @import 'modal/modal.scss';
 // endinjector
-
-
-iframe#axisJS {
-  min-height: 1470px;
-  border: 0;
-}

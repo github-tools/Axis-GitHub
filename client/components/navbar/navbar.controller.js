@@ -2,11 +2,12 @@
 
 angular.module('axismakerApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth, $window) {
-    $scope.menu = [{
-      'title': 'About',
-      'link': '/',
-      'icon': 'fa-info-circle'
-    },
+    $scope.menu = [
+    // {
+    //   'title': 'About',
+    //   'link': '/',
+    //   'icon': 'fa-info-circle'
+    // },
     {
       'title': 'New',
       'link': '/new',
@@ -25,7 +26,7 @@ angular.module('axismakerApp')
 
     $scope.logout = function() {
       Auth.logout();
-      $location.path('/login');
+      $location.path('/');
     };
 
     $scope.isActive = function(route) {

@@ -1,13 +1,13 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="container">
+<div class="container axisJS">
   <div class="row">
     <div class="col-sm-12">
       <h1>New <i class="fa fa-file-image-o"></i></h1>
       <form name="filenameForm">
         <div class="form-group" ng-class="{'has-error': filenameForm.filename.$invalid, 'has-success': !filenameForm.filename.$invalid}">
           <label class="control-label" for="filename">Project name</label>
-          <input name="filename" ng-model="filename" ng-model-options="{ updateOn: 'mousedown blur' }" placeholder="Please enter a project name here" validate-filename type="text" class="form-control" id="filename">
+          <input popover="{{popoverText}}" popover-placement="bottom" popover-show="{{filenameForm.filename.$invalid}}" name="filename" ng-model="filename" ng-model-options="{ updateOn: 'mousedown blur' }" placeholder="Please enter a project name here" validate-filename type="text" class="form-control" id="filename">
         </div>
       </form>
       <iframe id="axisJS" src="bower_components/axisJS/app/index.html?config=axismaker" border="0" width="100%" height="auto"></iframe>

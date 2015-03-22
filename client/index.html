@@ -13,6 +13,8 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css" />
+      <link rel="stylesheet" href="bower_components/c3/c3.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -46,6 +48,10 @@
       <script src="bower_components/angular-post-message/dist/angular-post-message.min.js"></script>
       <script src="bower_components/github/github.js"></script>
       <script src="bower_components/github-api/github.js"></script>
+      <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
+      <script src="bower_components/angular-slick/dist/slick.js"></script>
+      <script src="bower_components/d3/d3.js"></script>
+      <script src="bower_components/c3/c3.js"></script>
       <!-- endbower -->
       <script src="bower_components/jsonfn/jsonfn.js"></script>
     <!-- endbuild -->
@@ -67,6 +73,7 @@
       <script src="app/preview/preview.js"></script>
       <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/user.service.js"></script>
+      <script src="components/c3Demo/c3Demo.directive.js"></script>
       <script src="components/loadChart/loadChart.directive.js"></script>
       <script src="components/modal/modal.service.js"></script>
       <script src="components/mongoose-error/mongoose-error.directive.js"></script>

@@ -2,9 +2,14 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
+    <div ng-if="!currentRepoURI" class="alert alert-warning" role="alert">
+      You need to set a GitHub repo to be used with Axis. <br />
+      Please choose below, or create a new repo. <br /><br />
+      <strong>Note: We are not responsible for what happens if you use an existing repo!</strong>
+    </div>
+    <div class="col-sm-12" ng-if="!!currentRepoURI">
       <h1>GitHub Repo</h1>
-      <h3>Currently: <input type="text" style="width: 100%; border: 0px;" ng-model="currentRepoURI" /></h3>
+      <h3>Currently: <a ng-href="{{currentRepoURI.replace('git://', 'https://')}}">{{currentRepoURI}}</a></h3>
     </div>
     <div class="col-sm-12">
       <br />

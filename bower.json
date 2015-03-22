@@ -11,7 +11,6 @@
     "angular-resource": ">=1.2.*",
     "angular-cookies": ">=1.2.*",
     "angular-sanitize": ">=1.2.*",
-    "angular-bootstrap": "~0.11.0",
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
     "angular-ui-router": "~0.2.10",
@@ -19,13 +18,17 @@
     "jsonfn": "vkiryukhin/jsonfn",
     "github": "michael/github",
     "github-api": "michael/github#master",
-    "axisjs": "axismaker"
+    "axisjs": "axismaker",
+    "angular-slick": "~0.1.18",
+    "c3": "~0.4.10",
+    "angular-bootstrap": "~0.12.1"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
     "angular-scenario": ">=1.2.*"
   },
   "resolutions": {
-    "angular": ">=1.2.*"
+    "angular": ">=1.2.*",
+    "angular-bootstrap": "~0.12.1"
   }
 }

@@ -1,26 +1,19 @@
 'use strict';
 
 angular.module('axismakerApp')
-  .config(function ($stateProvider) {
-    $stateProvider
-      .state('main', {
-        url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
-      })
-      .state('new', {
-        url: '/new',
-        templateUrl: 'app/main/new/new.html',
-        controller: 'NewCtrl'
-      })
-      .state('edit', {
-        url: '/edit',
-        templateUrl: 'app/main/edit/edit.html',
-        controller: 'EditCtrl'
-      })
-      .state('edit_item', {
-        url: '/edit/:item',
-        templateUrl: 'app/main/edit/edit.html',
-        controller: 'EditCtrl'
-      });
-  });
+  .controller('MainCtrl', function(Auth, $scope, userData, $location){
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.repoSet = false;
+
+    // Check if repo is set:
+    if (userData && userData.repoURI.indexOf('git://') > -1) {
+      $scope.repoSet = true;
+    } else {
+      $location.path('/settings');
+    }
+  })
+  .config(['$tooltipProvider', function($tooltipProvider){
+    $tooltipProvider.setTriggers({
+        'invalidFilename': 'validFilename'
+    });
+}]);

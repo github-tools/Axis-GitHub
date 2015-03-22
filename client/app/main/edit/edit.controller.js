@@ -9,6 +9,8 @@ angular.module('axismakerApp')
     var github = new Github({token: token, auth: 'oauth'});
     var currentRepoURI = Auth.getCurrentUser().repoURI;
     var repoName = currentRepoURI.match(/git:\/\/github\.com\/([^/]+)\/(.+?)\.git$/);
+    $scope.username = repoName[1];
+    $scope.repo = repoName[2];
     var repo = github.getRepo(repoName[1], repoName[2]);
 
     // Item isn't set, let user choose
@@ -25,7 +27,7 @@ angular.module('axismakerApp')
         // Filter for directories with axis.json
         $scope.directories = [];
         angular.forEach(directories, function(item){
-          repo.getSha(branch, item.path + '/axis.json', function(err, sha){
+          repo.getSha(branch, item.path + '/index.html', function(err, sha){
             console.clear(); // hide ugly 404s.
             if (sha) {
               $scope.directories.push(item);
@@ -41,6 +43,12 @@ angular.module('axismakerApp')
           $location.path = '/edit';
         } else { // Load config object into Axis
           $scope.axisConfig = config;
+          repo.getRef('heads/' + branch, function(err, sha){
+            if (sha) {
+              $scope.sha = sha;
+              $scope.$apply();
+            }
+          });
           $scope.$apply();
         }
       });

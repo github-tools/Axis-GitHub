@@ -1,6 +1,6 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="container">
+<div class="container axisJS">
   <div class="row">
     <div class="col-sm-12">
       <h1>Edit <i class="fa fa-folder-open-o"></i></h1>
@@ -24,7 +24,11 @@
       </div>
 
     <!-- Display axisJS if argument given -->
-    <iframe load-chart id="axisJS" ng-show="!!itemName" border="0" width="100%" height="auto"></iframe>
+    <div ng-show="!!itemName">
+      <h4>Editing: <a ng-href="https://cdn.rawgit.com/{{username}}/{{repo}}/{{sha.substr(0, 7)}}/{{filename}}/index.html">{{itemName}}</a> - <small><a ng-href="https://cdn.rawgit.com/{{username}}/{{repo}}/{{sha.substr(0, 7)}}/{{filename}}/index.html">{{username}}/{{repo}}/{{sha.substr(0, 7)}}/{{filename}}</a></small></h4>
+      <iframe load-chart id="axisJS" border="0" width="100%" height="auto"></iframe>
+    </div>
+
     </div>
   </div>
 </div>

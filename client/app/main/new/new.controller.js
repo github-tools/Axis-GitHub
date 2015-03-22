@@ -20,7 +20,6 @@ angular.module('axismakerApp')
           repo.write($scope.branch, $scope.filename + '/axis.json', config.config, 'initial config -- ' + $scope.filename, function(err, res, xmlhttprequest){
             var urlJSON = 'https://cdn.rawgit.com/' + $scope.repoName[1] + '/' + $scope.repoName[2] + '/' + res.commit.sha + '/' + $scope.filename + '/axis.json';
             var compiled = template.replace(/\{\{axisJSON\}\}/, urlJSON); // messy, should be doable in Angular.
-            console.log(compiled);
             // Second write has to be after the first completes.
             repo.write($scope.branch, $scope.filename + '/index.html', compiled, 'initial template -- ' + $scope.filename, function(err, res, xmlhttprequest){
               var url = 'https://cdn.rawgit.com/' + $scope.repoName[1] + '/' + $scope.repoName[2] + '/' + res.commit.sha + '/' + $scope.filename + '/index.html';

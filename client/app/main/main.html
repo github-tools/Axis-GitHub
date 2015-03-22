@@ -1,18 +1,40 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
-  <div class="container">
+<div ng-if="!isLoggedIn()">
+  <header class="hero-unit" id="banner">
     <h1>Use AxisJS online <em>for free</em></h1>
-    <p class="lead">Create interactive charts with <strong>AxisJS</strong>...</p>
-    <p class="lead">...and host them for free on <i class="fa fa-github"></i></p>
-  </div>
-</header>
+    <!-- <slick infinte="true" arrows="false" dots="false" autoplay="true" class="carousel" autoplay-speed="3000" speed="1000"></slick> -->
+
+    <div class="container">
+      <div>
+        <c3-demo></c3-demo>
+        <p class="lead">Create interactive charts with <strong>AxisJS</strong>...</p>
+      </div>
+      <div>
+        <p class="lead">...and host them for free on <i class="fa fa-github"></i></p>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div ng-if="isLoggedIn()">
+  <header class="hero-unit" id="banner">
+    <div class="container">
+      <h1>Welcome to Axis!</h1>
+      <h5 ng-if="!repoSet">Note: You still need to set a GitHub repo to use <a href="/settings">here</a>!</h5>
+      <div class="row options" ng-if="repoSet">
+        <div class="new col-xs-6"><a ng-href="/new"><i class="fa-file-image-o fa fa-5x"></i><br />New</a></div>
+        <div class="edit col-xs-6"><a ng-href="/edit"><i class="fa-folder-open-o fa fa-5x"></i><br />Edit</a></div>
+      </div>
+    </div>
+  </header>
+</div>
 
 <footer class="footer">
   <div class="container">
-      <p>Axis Maker |
+      <p>AxisMaker |
         <a href="https://twitter.com/aendrew">Ændrew Rininsland (@aendrew)</a>,
-        <a href="http://timesdigitaldevelopment.tumblr.com">Times Digital Development</a> |
+        <a href="https://medium.com/digital-times/">Times Digital Development</a> |
          <a href="https://github.com/aendrew/axisbuilder/issues?state=open">Issues</a></p>
   </div>
 </footer>
