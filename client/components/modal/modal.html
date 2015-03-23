@@ -7,5 +7,16 @@
   <div ng-if="modal.html" ng-bind-html="modal.html"></div>
 </div>
 <div class="modal-footer">
+  <textarea class="form-control" rows="3" ng-click="this.select()" ng-model="iframeCode"></textarea>
+  <div class="row">
+    <div class="col-xs-6">
+      <label>Width</label>
+      <input class="form-control" ng-model="iframeWidth" ng-change="getiFrameCode()" />
+    </div>
+    <div class="col-xs-6">
+      <label>Height</label>
+      <input class="form-control" ng-model="iframeHeight" ng-change="getiFrameCode()"/>
+    </div>
+  </div>
   <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button>
 </div>

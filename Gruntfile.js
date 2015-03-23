@@ -354,8 +354,9 @@ module.exports = function (grunt) {
             '.htaccess',
             'bower_components/**/*',
             'assets/images/{,*/}*.{webp}',
+            'assets/images/*',
             'assets/fonts/**/*',
-            'axisJS/dist/**/*',
+            'app/preview/preview.html', // needed because $http + $templateCache !== bffs4evarr
             'index.html'
           ]
         }, {
@@ -658,7 +659,7 @@ module.exports = function (grunt) {
     'wiredep',
     'useminPrepare',
     'autoprefixer',
-    // 'ngtemplates', // disabled because I need to $http preview.html
+    'ngtemplates', // disabled because I need to $http preview.html
     'concat',
     'ngAnnotate',
     'copy:dist',

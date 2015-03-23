@@ -5,6 +5,7 @@ angular.module('axismakerApp')
     var branch = 'gh-pages'; // change to gh-pages in prod
     $scope.itemName = typeof $stateParams.item !== 'undefined' ? $stateParams.item : undefined;
     $scope.filename = $scope.itemName;
+    console.log($scope.filename);
     var token = Auth.getCurrentUser().githubToken;
     var github = new Github({token: token, auth: 'oauth'});
     var currentRepoURI = Auth.getCurrentUser().repoURI;
@@ -79,20 +80,42 @@ angular.module('axismakerApp')
 
     // Update chart
     var createNew = function(config) {
-      if ($scope.filename !== '') {
+      if ($scope.filename !== '' && typeof $scope.filename !== 'undefined') {
         $http.get('/app/preview/preview.html').success(function(template){
           var timestamp = new Date();
           repo.write($scope.branch, $scope.filename + '/axis.json', config.config, 'Updated ' + timestamp.toISOString() , function(err, res, xmlhttprequest){
             var urlJSON = 'https://cdn.rawgit.com/' + repoName[1] + '/' + repoName[2] + '/' + res.commit.sha + '/' + $scope.filename + '/axis.json';
             var compiled = template.replace(/\{\{axisJSON\}\}/, urlJSON); // messy, should be doable in Angular.
             repo.write($scope.branch, $scope.filename + '/index.html', compiled, 'Updated ' + timestamp.toISOString(), function(err, res, xmlhttprequest){
+              console.dir(res);
               var url = 'https://cdn.rawgit.com/' + repoName[1] + '/' + repoName[2] + '/' + res.commit.sha + '/' + $scope.filename + '/index.html';
               $modal.open({
                 templateUrl: 'components/modal/modal.html',
-                controller: function($scope, $sce){
+                controller: function($scope, $modalInstance, $sce){
                   $scope.modal = {};
                   $scope.modal.title = 'Updated chart!';
+                  $scope.modal.dismissable = true;
+                  // $scope.modal.buttons = [{
+                  //   text: 'Close',
+                  //   classes: 'btn btn-default',
+                  //   click: $scope.ok
+                  // }];
                   $scope.modal.html = $sce.trustAsHtml('<iframe src="' + url + '" width="100%" height="100%"></iframe><br><a href="' + url + '?' + Date.now() + '" target="_blank">Open in new window <i class="fa fa-search-plus"></i></a>');
+                  $scope.iframeWidth = '100%';
+                  $scope.iframeHeight = '400px';
+                  var cleanUnits = function(val) {
+                    if (val.indexOf('%') > -1) {
+                      return val;
+                    } else {
+                      return parseInt(val);
+                    }
+                  };
+
+                  $scope.getiFrameCode = function(){
+                    return $scope.iframeCode = '<iframe src="' + url + '" width="' + cleanUnits($scope.iframeWidth) + '" height="' + cleanUnits($scope.iframeHeight) + '"></iframe>';
+                  };
+
+                  $scope.getiFrameCode();
                 }
               });
             });

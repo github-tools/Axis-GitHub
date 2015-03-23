@@ -18,7 +18,8 @@ module.exports = {
     uri:    process.env.MONGOLAB_URI ||
             process.env.MONGOHQ_URL ||
             process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
-            'mongodb://ec2-54-154-48-167.eu-west-1.compute.amazonaws.com/axismaker'
+            'mongodb://localhost/axismaker-dev'
+            //'mongodb://ec2-54-154-48-167.eu-west-1.compute.amazonaws.com/axismaker'
   },
 
   GITHUB_ID: process.env.GITHUB_ID,
