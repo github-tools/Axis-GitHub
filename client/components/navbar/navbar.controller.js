@@ -36,4 +36,17 @@ angular.module('axismakerApp')
     $scope.loginOauth = function(provider) {
       $window.location.href = '/auth/' + provider;
     };
+    //
+    // $scope.getGreeting = function(){
+    //   var greetings = [
+    //     'Hello',
+    //     'Howdy',
+    //     'Hey thurr,',
+    //     'Yo!',
+    //     'HOLY COW, IT\'S',
+    //     'Keep on rockin\', '
+    //   ];
+    //
+    //   return greetings[Math.floor(Math.random() * (greetings.length) - 1)];
+    // };
   });

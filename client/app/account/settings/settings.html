@@ -8,19 +8,19 @@
       <strong>Note: We are not responsible for what happens if you use an existing repo!</strong>
     </div>
     <div class="col-sm-12" ng-if="!!currentRepoURI">
-      <h1>GitHub Repo</h1>
-      <h3>Currently: <a ng-href="{{currentRepoURI.replace('git://', 'https://')}}">{{currentRepoURI}}</a></h3>
+      <h1>GitHub Repo <i class="fa fa-github"></i></h1>
+      <h3><i class="fa fa-check-circle"></i> <a ng-href="{{currentRepoURI.replace('git://', 'https://')}}">{{currentRepoURI}}</a></h3>
     </div>
     <div class="col-sm-12">
       <br />
-      <button new-repo class="btn btn-success" ng-click="showNewRepo = !showNewRepo">New repo...</button>
+      <button new-repo class="btn btn-success" ng-click="showNewRepo = !showNewRepo">New repo  <i class="fa fa-plus-square"></i></button>
       <div>{{newRepoMessages}}</div>
       <br />
         <table class="repo-table table table-hover"> <!-- TODO implement datatables  <table datatable class="repo-table table table-hover"> -->
         <thead>
           <tr>
             <th></th>
-            <th>repo</th>
+            <th><i class="fa fa-github"></i> repo</th>
             <th>url</th>
             <th>owner</th>
             <th>permissions</th>
@@ -39,14 +39,24 @@
             </td>
           </tr>
           <tr ng-repeat="repo in writableRepos" ng-style="currentRepoURI === repo.git_url ? {'font-weight': 'bold'} : {'font-weight': 'normal'}">
-            <td><button class="btn btn-success btn-xs" ng-click="changeRepo(repo.git_url)">Use</button></td>
+            <td>
+              <button
+                class="btn btn-xs"
+                ng-class="{'btn-success': currentRepoURI !== repo.git_url, 'btn-primary': currentRepoURI === repo.git_url}"
+                ng-disabled="currentRepoURI === repo.git_url"
+                ng-click="changeRepo(repo.git_url)">
+                  <span ng-if="currentRepoURI !== repo.git_url">Use </span>
+                  <span ng-if="currentRepoURI === repo.git_url">Selected </span>
+                  <i ng-class="{'fa-check-circle': currentRepoURI !== repo.git_url, 'fa-check-circle-o': currentRepoURI === repo.git_url}" class="fa"></i>
+              </button>
+            </td>
             <td>{{repo.full_name}}</td>
             <td>{{repo.git_url}}</td>
             <td>{{repo.owner.login}}</td>
-            <td>
-              <strong>A: </strong>{{repo.permissions.admin}}
-              <strong>↑: </strong>{{repo.permissions.push}}
-              <strong>↓: </strong>{{repo.permissions.pull}}
+            <td class="permissions">
+              <strong ng-class="{hasPermission: repo.permissions.admin}"><i class="fa fa-cogs"></i> </strong>
+              <strong ng-class="{hasPermission: repo.permissions.push}"><i class="fa fa-pencil-square-o"></i> </strong>
+              <strong ng-class="{hasPermission: repo.permissions.pull}"><i class="fa fa-book"></i></strong>
             </td>
             <td>{{repo.created_at}}</td>
           </tr>

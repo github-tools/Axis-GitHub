@@ -13,8 +13,7 @@ angular.module('axismakerApp')
     $scope.repo = repoName[2];
     var repo = github.getRepo(repoName[1], repoName[2]);
 
-    // Item isn't set, let user choose
-    if (!$scope.itemName) {
+    var getCharts = function() {
       repo.getTree(branch, function(err, tree){
         // Create a list of directories
         var directories = [];
@@ -27,15 +26,25 @@ angular.module('axismakerApp')
         // Filter for directories with axis.json
         $scope.directories = [];
         angular.forEach(directories, function(item){
-          repo.getSha(branch, item.path + '/index.html', function(err, sha){
-            console.clear(); // hide ugly 404s.
-            if (sha) {
+          repo.getCommits({path: item.path + '/index.html'}, function(err, commits){
+            // console.clear(); // hide ugly 404s.
+            if (commits) {
+              var sorted = commits.sort(function(a, b){
+                return Date(a.commit.committer.date) > Date(b.commit.committer.date);
+              });
+              item.updated = sorted[0].commit.committer.date;
               $scope.directories.push(item);
               $scope.$apply();
             }
           });
         });
       });
+    }
+
+
+    // Item isn't set, let user choose
+    if (!$scope.itemName) {
+      getCharts();
     } else {
       repo.read(branch, $scope.itemName + '/axis.json', function(err, config){
         if (err) {
@@ -57,6 +66,16 @@ angular.module('axismakerApp')
     $scope.editChart = function(path) {
       $location.path('/edit/' + path);
     };
+
+    $scope.deleteChart = function(path) {
+      repo.remove(branch, path + '/axis.json', function(err) {
+        if (err) console.dir(err);
+        repo.remove(branch, path + '/index.html', function(err){
+          if (err) console.dir(err);
+          getCharts();
+        });
+      });
+    }
 
     // Update chart
     var createNew = function(config) {

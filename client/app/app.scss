@@ -15,6 +15,18 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
+.permissions {
+  text-align: center;
+  
+  i {
+    color: red;
+  }
+
+  .hasPermission i {
+    color: green;
+  }
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';

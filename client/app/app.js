@@ -21,16 +21,7 @@ angular.module('axismakerApp', [
       .state('main', {
         url: '/',
         templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl',
-        resolve: {
-          userData: function(User, Auth){
-            if (Auth.isLoggedIn()) {
-              return User.get().$promise;
-            } else {
-              return false;
-            }
-          }
-        }
+        controller: 'MainCtrl'
       })
       .state('new', {
         url: '/new',

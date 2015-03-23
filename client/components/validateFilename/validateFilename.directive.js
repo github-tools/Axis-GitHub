@@ -8,7 +8,6 @@ angular.module('axismakerApp')
       link: function (scope, element, attrs, ngModel) {
         ngModel.$asyncValidators.validateFilename = function(modelValue) {
           var deferred = $q.defer();
-
           if (scope.github && modelValue.length) {
             var repo = scope.github.getRepo(scope.repoName[1], scope.repoName[2]);
             var url = modelValue + '/index.html';

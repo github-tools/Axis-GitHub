@@ -12,12 +12,16 @@
             <tr>
               <th></th>
               <th>name</th>
+              <th>modified</th>
+              <th>remove</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="directory in directories">
-              <td><button class="btn btn-success btn-xs" ng-click="editChart(directory.path)">Edit</button></td>
+            <tr ng-repeat="directory in directories | orderBy: '-updated'">
+              <td><button class="btn btn-success btn-xs" ng-click="editChart(directory.path)">Edit <i class="fa fa-pencil-square"></i></button></td>
               <td>{{directory.path}}</td>
+              <td>{{directory.updated}}</td>
+              <td><button class="btn btn-danger btn-xs" ng-click="deleteChart(directory.path)"><i class="fa fa-times"></i></button></td>
             </tr>
             </tbody>
         </table>

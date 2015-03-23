@@ -16,7 +16,7 @@
     "angular-ui-router": "~0.2.10",
     "angular-post-message": "~1.1.1",
     "jsonfn": "vkiryukhin/jsonfn",
-    "github": "michael/github",
+    "github": "^0.10.5",
     "github-api": "michael/github#master",
     "axisjs": "axismaker",
     "angular-slick": "~0.1.18",
