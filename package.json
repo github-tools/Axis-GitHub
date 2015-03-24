@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "connect-livereload": "~0.4.0",
+    "google-cdn-data": "^0.1.17",
     "grunt": "~0.4.4",
     "grunt-angular-templates": "^0.5.4",
     "grunt-asset-injector": "^0.1.0",
@@ -45,7 +46,7 @@
     "grunt-dom-munger": "^3.4.0",
     "grunt-env": "~0.4.1",
     "grunt-express-server": "~0.4.17",
-    "grunt-google-cdn": "~0.4.0",
+    "grunt-google-cdn": "^0.4.3",
     "grunt-karma": "~0.8.2",
     "grunt-mocha-test": "~0.10.2",
     "grunt-newer": "~0.7.0",

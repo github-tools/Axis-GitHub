@@ -223,7 +223,7 @@ module.exports = function (grunt) {
       target: {
         src: '<%= yeoman.client %>/index.html',
         ignorePath: '<%= yeoman.client %>/',
-        exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/, /axisjs/ ]
+        exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/, /axisjs/, /jquery/, /angular\.js/, /angular-sanitize/, /angular-resource/, /angular-cookies/ ]
       }
     },
 
@@ -336,6 +336,9 @@ module.exports = function (grunt) {
 
     // Replace Google CDN references
     cdnify: {
+      options: {
+        cdn: require('google-cdn-data')
+      },
       dist: {
         html: ['<%= yeoman.dist %>/public/*.html']
       }
