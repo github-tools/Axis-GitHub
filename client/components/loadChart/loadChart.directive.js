@@ -8,7 +8,7 @@ angular.module('axismakerApp')
         scope.$watch('axisConfig', function(newValue){
           if (newValue) {
             window.axisConfig = scope.axisConfig;
-            element.attr('src', 'bower_components/axisJS/dist/index.html?config=axismaker');
+            element.attr('src', 'bower_components/axisjs/dist/index.html?config=axismaker');
           }
         });
       }
