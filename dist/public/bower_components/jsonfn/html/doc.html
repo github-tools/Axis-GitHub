@@ -1,0 +1,108 @@
+<style type="text/css">
+#doc {margin:1em;}
+#doc ul li {margin:0.5em;}
+#tab1 td {padding-right:15px;}
+</style>
+<div id="doc">
+<div class="h6">Documentation</div>
+<p>
+      <ul> 
+        <li>Installation
+          <ul>
+            <li><b>Browser</b> ( all major browsers and IE9+ ) <br/>
+              <pre><code data-language="javascript">&lt;script type="text/javascript" src="path/to/jsonfn.js"&gt;&lt;/script&gt;</code></pre>
+            </li>
+              <li><b>Node.js</b> <br/>
+              <div><pre><code data-language="javascript">npm install json-fn</code></pre></div>
+            </li>
+          </ul>
+        </li>
+        
+        
+        <li>Initialization
+          <ul>
+            <li><b>Browser</b>: <pre><code data-language="javascript">not needed</code></pre></li>
+            <li><b>Node.js</b>: <pre><code data-language="javascript">var JSONfn = require('path/to/json-fn');</code></pre>
+            </li>
+          </ul>
+        </li>
+
+
+        <li>Usage:
+          <ul>
+            <li><b>Stringify</b> 
+              <pre><code data-language="javascript">var str = JSONfn.stringify(obj);</code></pre>
+              <table>
+                <tr>
+                  <td><code>@obj</code></td><td> - javascript Object;</td>
+                </tr>
+                <tr>
+                  <td><code>@return</code></td><td>- String;</td>
+                </tr>
+              </table>
+            
+            </li>
+          </ul>
+
+          
+          <ul>
+            <li><b>Parse</b> 
+              <pre><code data-language="javascript">var obj = JSONfn.parse(str[, date2obj]);</code></pre>
+              <table>
+                <tr>
+                  <td><code>@str</code></td><td> - string, produced with JSONfn.stringify() function;</td>
+                </tr>
+                <tr>
+                  <td><code>@date2obj</code></td><td>- Boolean (<code><i>optional</i></code>); 
+                  Set it <code>true</code> if original object had property instance of Date.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>@return</code></td><td>- javascript Object;</td>
+                </tr>
+              </table>
+            
+            </li>
+          </ul>
+          
+          
+          <ul>
+            <li><b>Clone</b> 
+              <pre><code data-language="javascript">var objClone = JSONfn.parse(obj[, date2obj]);</code></pre>
+              <table>
+                <tr>
+                  <td><code>@obj</code></td><td> - javascript Object;</td>
+                </tr>
+                <tr>
+                  <td><code>@date2obj</code></td><td>- Boolean (<code><i>optional</i></code>); 
+                  Set it <code>true</code> if original object had property instance of Date.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>@return</code></td><td>- javascript Object;</td>
+                </tr>
+              </table>
+            
+            </li>
+          </ul>
+
+        </li>
+
+          <li>Testing
+          <ul>
+            <li><b>Browser</b> ( add this to header and see result in console ) <br/>
+              <div><pre><code data-language="javascript">&lt;script type="text/javascript" src="test/jsonfn_test.js"&gt;&lt;/script&gt;</code></pre></div>
+              
+            </li>
+            
+            <li><b>Node.js</b> <br/>
+              <div><code>&gt;node test/jsonfn_test.js</code></div>
+            </li>
+          </ul>
+        </li>
+
+        
+      </ul>
+
+</p>
+</div>

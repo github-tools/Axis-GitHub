@@ -1,0 +1,34 @@
+{
+  "name": "github-api",
+  "main": "github.js",
+  "version": "0.10.5",
+  "homepage": "https://github.com/michael/github",
+  "authors": [
+    "Sergey Klimov <sergey.v.klimov@gmail.com> (http://darvin.github.com/)"
+  ],
+  "description": "Github.js provides a minimal higher-level wrapper around git's plumbing commands, exposing an API for manipulating GitHub repositories on the file level. It is being developed in the context of Prose, a content editor for GitHub.",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "github",
+    "oauth"
+  ],
+  "license": "BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.10.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.10.5",
+    "commit": "424d7d2f2603abf514cc92b890f6e762a66d86d9"
+  },
+  "_source": "git://github.com/michael/github.git",
+  "_target": "^0.10.5",
+  "_originalSource": "github"
+}

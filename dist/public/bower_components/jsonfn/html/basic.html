@@ -1,0 +1,41 @@
+
+
+
+
+<table >
+<tr><td>
+<div class="h6">Object</div>
+</td></tr>
+<tr>
+<td class="jsonDoc">
+<div >
+<pre><code>
+var jsonfnObj = {
+
+  <b>firstName</b>:"John",
+  
+  <b>lastName</b>:"Dow",
+  
+  <b>today</b>: new Date(),
+  
+  <b>re</b>: /(\w+)\s(\w+)/,
+  
+  <b>getFullName</b>:function() {
+    return this.firstName+" "+this.lastName
+  },
+  
+  <b>greetLambda</b>:function(param) {
+    var displayMessage = (function(msg1){  
+      return function(msg2){  
+        return msg1 + msg2;
+      }     
+    }(param));
+    return displayMessage("Lambda World!");
+  }
+  
+};
+</code></pre>
+</div>
+</td>
+
+</tr></table>

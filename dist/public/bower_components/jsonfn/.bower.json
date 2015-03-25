@@ -1,0 +1,13 @@
+{
+  "name": "jsonfn",
+  "homepage": "https://github.com/vkiryukhin/jsonfn",
+  "_release": "8804a4b424",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "8804a4b424cc35688428df68ea7040228b5dd7d2"
+  },
+  "_source": "git://github.com/vkiryukhin/jsonfn.git",
+  "_target": "*",
+  "_originalSource": "vkiryukhin/jsonfn"
+}
