@@ -434,7 +434,7 @@ module.exports = function (grunt) {
       },
       dist: [
         'sass',
-        // 'imagemin',
+        'imagemin',
         'svgmin'
       ]
     },
@@ -662,7 +662,7 @@ module.exports = function (grunt) {
     'wiredep',
     'useminPrepare',
     'autoprefixer',
-    'ngtemplates', // disabled because I need to $http preview.html
+    'ngtemplates',
     'concat',
     'ngAnnotate',
     'copy:dist',
